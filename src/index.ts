@@ -8,6 +8,8 @@ app.use(express.json())
 // /api/products
 app.use("/api/products/", productsRoute)
 
+// /api/customers
+
 const PORT = 3000
 
 app.listen(PORT, () => {

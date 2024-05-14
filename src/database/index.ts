@@ -23,6 +23,7 @@ export const connectToDatabase = async () => {
 
     cached.conn = cached.promise || mongoose.connect(MONGODB_URI, {
         dbName: "sleek",
+        // bufferCommands: false,
     })
 
     cached.conn = await cached.promise
