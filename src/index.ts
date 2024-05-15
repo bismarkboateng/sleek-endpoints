@@ -1,14 +1,14 @@
 import express from "express"
 import productsRoute from "./routes/routes.products"
+import customersRoute from "./routes/routes.customers"
 
 const app = express()
 
 app.use(express.json())
 
-// /api/products
 app.use("/api/products/", productsRoute)
 
-// /api/customers
+app.use("/api/customers/", customersRoute)
 
 const PORT = 3000
 

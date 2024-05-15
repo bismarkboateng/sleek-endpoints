@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import "dotenv/config"
 
 const MONGODB_URI = process.env.MONGODB_URI
 
@@ -23,7 +24,6 @@ export const connectToDatabase = async () => {
 
     cached.conn = cached.promise || mongoose.connect(MONGODB_URI, {
         dbName: "sleek",
-        // bufferCommands: false,
     })
 
     cached.conn = await cached.promise

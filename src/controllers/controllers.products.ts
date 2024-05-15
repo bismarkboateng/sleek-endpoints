@@ -38,7 +38,6 @@ export const createAProduct = async (request: Request, response: Response) => {
 export const updateProduct = async (request: Request, response: Response) => {
     const  { id } = request.params
     const product = request.body
-
     try {
         await connectToDatabase()
         const updatedProduct = await Product.findByIdAndUpdate(id, product, { new: true })
@@ -47,7 +46,7 @@ export const updateProduct = async (request: Request, response: Response) => {
                 message: "Product not found!"
             })
         }
-        return response.status(200).send(updateProduct)
+        return response.status(200).send(updatedProduct)
     } catch (error) {
         throw error
     }
