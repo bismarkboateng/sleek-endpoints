@@ -103,15 +103,15 @@
 `curl -X GET http://localhost:300/`
 
 ## create a new customer
-```curl -X POST http://localhost:300/ -H "Content-Type: application/json" -d '{
+`curl -X POST http://localhost:300/ -H "Content-Type: application/json" -d '{
   "name": "Jane Doe",
   "email": "jane.doe@example.com"
- }' ```
+ }' `
 
 ## Update an Existing Customer
-```curl -X PATCH http://localhost:300/1/update -H "Content-Type: application/json" -d '{
+`curl -X PATCH http://localhost:300/1/update -H "Content-Type: application/json" -d '{
   "name": "Jane Smith"
-}'```
+}'`
 
 ## delete a customer
 `curl -X DELETE http://localhost:300/1/delete`
