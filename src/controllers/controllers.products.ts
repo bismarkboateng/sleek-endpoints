@@ -70,3 +70,46 @@ export const deleteProduct = async (request: Request, response: Response) => {
         throw error
     }
 }
+
+export const totalProduct = async (request: Request, response: Response) => {
+    try {
+        await connectToDatabase()
+        const products = await Product.find().exec()
+        // returns the total number of products available
+        const totalProducts = products.length
+        if(!totalProducts) {
+            return response.status(404).send({
+                message: "No Products Found!"
+            })
+        }
+        return response.status(200).send({
+            total: totalProducts
+        })
+    } catch (error) {
+        throw error
+    }
+}
+
+
+export const totalRevenue = async (request: Request, response: Response) => {
+    try {
+        await connectToDatabase()
+        const products = await Product.find().exec()
+
+        // price of each product
+        const price = Number(products[0]?.price)
+        const totalProducts = products.length
+        const totalRevenue = Math.ceil(price * totalProducts)
+
+        if(!totalRevenue) {
+            return response.status(404).send({
+                message: "Could not calculate revenue"
+            })
+        }
+        return response.status(200).send({
+            revenue: totalRevenue
+        })
+    } catch (error) {
+        throw error
+    }
+}

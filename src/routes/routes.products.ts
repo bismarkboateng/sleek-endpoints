@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { createAProduct, deleteProduct, getAllProducts, updateProduct } from "../controllers/controllers.products";
+import {
+    createAProduct, deleteProduct, getAllProducts,
+    totalProduct, totalRevenue, updateProduct
+} from "../controllers/controllers.products";
 
 const router = Router()
 
@@ -14,5 +17,9 @@ router.patch("/:id/update", updateProduct)
 
 // delete a product
 router.delete("/:id/delete", deleteProduct)
+
+router.get("/total", totalProduct)
+
+router.get("/revenue", totalRevenue)
 
 export default router

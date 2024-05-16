@@ -3,7 +3,7 @@ import { Schema, model, models } from "mongoose";
 const OrderSchema = new Schema({
     customer: { type: Schema.Types.ObjectId, ref: "Customer" },
     orderNo: { type: String },
-    date: { type: Date },
+    date: { type: Date, require: false },
     product: { type: Schema.Types.ObjectId, ref: "Product" },
     status: { type: String },
 })

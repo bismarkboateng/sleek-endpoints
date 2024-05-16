@@ -8,7 +8,8 @@ const CustomerSchema = new Schema({
     lastOrdered: { type: Date, required: false, unique: false },
     email: { type: String, required: true, unique: true },
     phoneNumber: { type: String, required: false, unique: true },
-    status: { type: String, required: false }
+    status: { type: String, required: false },
+    userId: { type: String, require: false },
 })
 
 const Customer = models.Customer || model("Customer", CustomerSchema)
