@@ -3,7 +3,7 @@ import  cors from "cors"
 import productsRoute from "./routes/routes.products"
 import customersRoute from "./routes/routes.customers"
 import ordersRoute from "./routes/routes.orders"
-import { data } from "./utils"
+import { sampleRevenueData } from "./utils"
 
 const app = express()
 
@@ -29,7 +29,7 @@ app.get("/api/visitors", (request, response) => {
 })
 
 app.get("/api/card", (request, response) => {
-    return response.status(200).send(data)
+    return response.status(200).send(sampleRevenueData)
 })
 
 const PORT = process.env.PORT

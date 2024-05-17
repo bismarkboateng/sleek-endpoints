@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { createAnOrder, getAllOrders, totalOrder } from "../controllers/controllers.orders";
+import {
+    OrdersStatus, createAnOrder,
+    getAllOrders, totalOrder 
+} from "../controllers/controllers.orders";
 
 const router = Router()
 
@@ -8,5 +11,7 @@ router.get("/", getAllOrders)
 router.post("/", createAnOrder)
 
 router.get("/total", totalOrder)
+
+router.get("/orders/status", OrdersStatus)
 
 export default router

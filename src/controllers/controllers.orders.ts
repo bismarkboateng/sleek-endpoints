@@ -52,3 +52,51 @@ export const totalOrder = async (request: Request, response: Response) => {
         throw error
     }
 }
+
+export const OrdersStatus = async (request: Request, response: Response) => {
+    try {
+        await connectToDatabase()
+        const orders = await Order.find().exec()
+        
+        if(!orders) {
+            return response.status(404).send({
+                message: "No Orders found!"
+            })
+        }
+
+        let ordersData = []
+        let countDelivered = 0
+        let countPending = 0
+        let countCancelled = 0
+
+        orders.forEach(order => {
+            if(order.status === "Delivered") {
+                countDelivered += 1
+            } else if (order.status === "pending") {
+                countPending += 1
+            } else if (order.status === "Cancelled") {
+                countCancelled += 1
+            }
+        })
+
+        orders.forEach(order => {
+            if(order.status === "Delivered" && countDelivered > 0) {
+                ordersData.push({ status: "Delivered", value: countDelivered, color: "green.6"})
+                countDelivered = 0
+            } else if (order.status === "pending" && countPending > 0) {
+                ordersData.push({ status: "pending", value: countPending, color: "yellow.6"})
+                countPending = 0
+            } else if (order.status === "Cancelled" && countCancelled > 0) {
+                ordersData.push({ status: "Cancelled", value: countCancelled, color: "red.6"})
+                countCancelled = 0
+            }
+        })
+
+        return response.status(200).send({
+            ordersData: ordersData
+        })
+
+    } catch (error) {
+        throw error
+    }
+}
