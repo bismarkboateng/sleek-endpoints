@@ -69,3 +69,30 @@ export const deleteCustomer = async (request: Request, response: Response) => {
         throw error
     }
 }
+
+export const checkCustomer = async (request: Request, response: Response) => {
+    const { email } = request.params
+
+    try {
+        await connectToDatabase()
+        const customers = await Customer.find().exec()
+
+        if (!customers) {
+            return response.status(404).send({
+                message: "Customers not found!"
+            })
+        }
+
+        const customer = customers.find((customer) => customer.email == email)
+
+        if(!customer) {
+            return response.status(404).send({
+                message: "Customer not found!"
+            })
+        }
+
+        return response.status(200).send(customer)
+    } catch (error) {
+        throw error
+    }
+}
