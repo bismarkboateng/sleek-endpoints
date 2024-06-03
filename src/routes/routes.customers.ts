@@ -8,7 +8,7 @@ const router = Router()
 
 router.get("/", getAllCustomers)
 
-router.get("/:id/get-a-customer", getACustomer)
+router.get("/:id/get-customer", getACustomer)
 
 router.post("/", createACustomer)
 
@@ -17,6 +17,5 @@ router.patch("/:id/update", updateCustomer)
 router.delete("/:id/delete", deleteCustomer)
 
 router.get("/:email/check-customer", checkCustomer)
-
 
 export default router

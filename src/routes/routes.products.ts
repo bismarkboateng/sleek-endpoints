@@ -18,8 +18,10 @@ router.patch("/:id/update", updateProduct)
 // delete a product
 router.delete("/:id/delete", deleteProduct)
 
+// returns total products
 router.get("/total", totalProduct)
 
+// returns revenue
 router.get("/revenue", totalRevenue)
 
 export default router

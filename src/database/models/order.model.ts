@@ -1,10 +1,13 @@
 import { Schema, model, models } from "mongoose";
 
 const OrderSchema = new Schema({
-    customer: { type: Schema.Types.ObjectId, ref: "Customer" },
+    customer: { type: Schema.Types.ObjectId, ref: "Customer", required: true },
     orderNo: { type: String },
-    date: { type: Date, require: false },
-    product: { type: Schema.Types.ObjectId, ref: "Product" },
+    orderDate: { type: Date, require: false },
+    products: [{
+        product: { type: Schema.Types.ObjectId, ref: "Product", required: true },
+        quantity: { type: Number, required: true },
+    }],
     status: { type: String },
 })
 

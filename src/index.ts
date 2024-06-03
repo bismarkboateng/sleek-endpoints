@@ -1,15 +1,15 @@
 import express from "express"
-import  cors from "cors"
+import cors from "cors"
 import productsRoute from "./routes/routes.products"
 import customersRoute from "./routes/routes.customers"
 import ordersRoute from "./routes/routes.orders"
-import { sampleRevenueData } from "./utils"
+import { revenueGraphData, sampleRevenueData } from "./utils"
 
 const app = express()
 
 app.use(express.json())
 const corsOptions = {
-    origin: ["http://localhost:3000/"],
+    origin: ["http://localhost:3000", "https://sleek-pink.vercel.app"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE", 
     credentials: true,
     optionsSuccessStatus: 204
@@ -30,6 +30,10 @@ app.get("/api/visitors", (request, response) => {
 
 app.get("/api/card", (request, response) => {
     return response.status(200).send(sampleRevenueData)
+})
+
+app.get("/api/revenue-graph", (request, response) => {
+    return response.status(200).send(revenueGraphData)
 })
 
 const PORT = process.env.PORT

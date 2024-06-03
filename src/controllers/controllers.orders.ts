@@ -72,7 +72,7 @@ export const OrdersStatus = async (request: Request, response: Response) => {
         orders.forEach(order => {
             if(order.status === "Delivered") {
                 countDelivered += 1
-            } else if (order.status === "pending") {
+            } else if (order.status === "Pending") {
                 countPending += 1
             } else if (order.status === "Cancelled") {
                 countCancelled += 1
@@ -81,13 +81,13 @@ export const OrdersStatus = async (request: Request, response: Response) => {
 
         orders.forEach(order => {
             if(order.status === "Delivered" && countDelivered > 0) {
-                ordersData.push({ status: "Delivered", value: countDelivered, color: "green.6"})
+                ordersData.push({ name: "Delivered", value: countDelivered, color: "green.6"})
                 countDelivered = 0
-            } else if (order.status === "pending" && countPending > 0) {
-                ordersData.push({ status: "pending", value: countPending, color: "yellow.6"})
+            } else if (order.status === "Pending" && countPending > 0) {
+                ordersData.push({ name: "Pending", value: countPending, color: "yellow.6"})
                 countPending = 0
             } else if (order.status === "Cancelled" && countCancelled > 0) {
-                ordersData.push({ status: "Cancelled", value: countCancelled, color: "red.6"})
+                ordersData.push({ name: "Cancelled", value: countCancelled, color: "red.6"})
                 countCancelled = 0
             }
         })
